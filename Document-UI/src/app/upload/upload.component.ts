@@ -10,8 +10,9 @@ import { DocumentService } from '../services/document.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
+
   myForm = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    description: new FormControl('', [Validators.required]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
@@ -35,18 +36,22 @@ export class UploadComponent implements OnInit {
   }
   submit(){
     const formData = new FormData();
-    
-    formData.append('file', this.myForm.get('fileSource')?.value);
-    formData.append('description', this.myForm.controls.description.value);
+    if(this.myForm.valid){
+      formData.append('file', this.myForm.get('fileSource')?.value);
+      formData.append('description', this.myForm.controls.description.value);
+  
+      console.log(this.myForm.controls.description.value);
+      this.documentService.UploadFile(formData).subscribe(
+        res =>{
+          console.log('res', res);
+          alert('Uploaded Successfully.');
+          this._router.navigateByUrl('/home');
+        }
+      );
+    } else{
+        alert('feilds are required');
+    }
 
-    console.log(this.myForm.controls.description.value);
-    this.documentService.UploadFile(formData).subscribe(
-      res =>{
-        console.log('res', res);
-        alert('Uploaded Successfully.');
-        this._router.navigateByUrl('/home');
-      }
-    );
    
   }
   

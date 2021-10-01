@@ -17,13 +17,15 @@
                     <label> Description </label>
                     <textarea  required  class="form-control form-control-lg" type="text" formControlName="description"
                      placeholder="File Description" name="description"required ></textarea>
-                     
+                     <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                        <div *ngIf="f.description?.errors?.required">Description is required.</div>
+                    </div>
                      
                 </div>
             </div>
-            <div class="form-group  p-2">
-                <input type="submit" class="btn btn-success btn-lg btn-block"  >
-                <button type="button" class="btn btn-primary btn-lg" routerLink="/home">Back To Home</button>
+            <div class="form-group  p-2 d-flex justify-content-between">
+                <input type="submit" class="btn btn-success btn-lg btn-block "  >
+                <button type="button" class="btn btn-primary btn-lg " routerLink="/home">Back To Home</button>
 
             </div>
         </form>
