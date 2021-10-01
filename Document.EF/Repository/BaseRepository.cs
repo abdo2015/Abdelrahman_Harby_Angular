@@ -92,7 +92,7 @@ namespace Document.EF.Repository
         public bool Check(string x)
         {
             var check =_context.Set<T>().Find(x);
-            return check != null ;
+            return check != null?true:false ;
         }
     }
 }

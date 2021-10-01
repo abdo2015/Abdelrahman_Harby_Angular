@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Document.Core;
 
+
 namespace Document.EF
 {
     public class ApplicationDbContext : DbContext

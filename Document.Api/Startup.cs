@@ -45,6 +45,7 @@ namespace Document.Api
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Document.Api", Version = "v1" });
@@ -69,6 +70,11 @@ namespace Document.Api
             //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"StaticFiles")),
             //    RequestPath = new PathString("/Resources")
             //});
+            //configurations to cosume the Web API from port : 4200 (Angualr App)
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseRouting();
 

@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 
 namespace Document.Api.Controllers
 {
+    public class model{
+        public IFormFile File { get; set; }
+        public string Description { get; set; }
+    }
     [Route("api/[controller]")]
     [ApiController]
     public class DocumentController : ControllerBase
@@ -76,14 +80,14 @@ namespace Document.Api.Controllers
                     {
                         DocumentTitle = fileName,
                         DocumentURL = dbPath,
-                        Description = Request.Form["Description"]
+                        Description = Request.Form["description"]
                     };
                     var uploadedDocument = _UnitOfWork.DocumentRepository.Add(doc);
-                    if (!_UnitOfWork.DocumentRepository.Check(fileName))
-                    {
-                        ModelState.AddModelError("Title", "the title is already taken");
-                        return BadRequest(ModelState);
-                    }
+                    //if (!_UnitOfWork.DocumentRepository.Check(doc.DocumentTitle))
+                    //{
+                    //    ModelState.AddModelError("Title", "the title is already taken");
+                    //    return BadRequest(ModelState);
+                    //}
                     _UnitOfWork.Complete();
                     return Ok(uploadedDocument);
                 }
@@ -102,13 +106,14 @@ namespace Document.Api.Controllers
 
 
         // DELETE api/<DocumentController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
             try
             {
                 _UnitOfWork.DocumentRepository.Delete(id);
-                return _UnitOfWork.Complete() > 0 ? Ok("Document was deleted") : NotFound("Ducoment is not Found");
+                _UnitOfWork.Complete();
+                return  Ok(GetAllDocuments()) ;
             }
             catch (Exception ex)
             {

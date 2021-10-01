@@ -1,1 +1,32 @@
-<button class="btn btn-danger">upload wor!</button>
+
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Document Register</h1>
+</div>  
+<div class="row">
+    <div class="col-md-5">
+        <form  [formGroup]="myForm" (ngSubmit)="submit()">
+            <input type="hidden" name="Id" />
+            <div class="form-row">
+                <div class="form-group p-2">
+                    <label>Upload Your Document </label>
+                    <input  required formControlName="file" class="form-control form-control-lg" 
+                    (change)="onFileChange($event)" type="file" placeholder="" name="Upload" accept=".pdf,.png, .jpg">
+                    
+                </div>
+                <div class="form-group p-2 ">
+                    <label> Description </label>
+                    <textarea  required  class="form-control form-control-lg" type="text" formControlName="description"
+                     placeholder="File Description" name="description"required ></textarea>
+                     
+                     
+                </div>
+            </div>
+            <div class="form-group  p-2">
+                <input type="submit" class="btn btn-success btn-lg btn-block"  >
+                <button type="button" class="btn btn-primary btn-lg" routerLink="/home">Back To Home</button>
+
+            </div>
+        </form>
+    </div>
+    
+</div>

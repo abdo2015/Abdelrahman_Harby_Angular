@@ -1,1 +1,29 @@
-<p>home works!</p>
+
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Document Register</h1>
+</div>
+<div>
+  <button class="btn btn-primary" routerLink="/add">Add Document </button>
+</div>
+<div class="row">
+<table class="table text-center mt-3 ">
+    <thead class="table-light">
+      <th >#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Creation Date</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items,let indexOfelement=index;">
+          <td>{{indexOfelement+ 1}}</td>
+          <td>{{item.documentTitle}}</td>
+          <td [routerLink]="['/details/', item.id]" class="cursor-pointer">{{item.description}}</td>
+          <td>{{item.creationDate |  date:'yyyy-MM-dd'}}</td>
+          <td><button class ="btn btn-danger" (click)="deleteItem(item.id)"><span >Delete</span></button></td>
+          
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
