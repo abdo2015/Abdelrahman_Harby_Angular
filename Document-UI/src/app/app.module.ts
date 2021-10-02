@@ -8,13 +8,15 @@ import { DetailsComponent } from './details/details.component';
 import { UploadComponent } from './upload/upload.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    UploadComponent
+    UploadComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

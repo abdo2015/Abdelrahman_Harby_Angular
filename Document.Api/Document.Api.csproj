@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Resources\data\501 challenging logic reasoning 2e.pdf" />
+    <Content Remove="wwwroot\Resources\data\9 months_Track Overview-SWTesting.pdf" />
+    <Content Remove="wwwroot\Resources\data\Chapter 2 Slides.pdf" />
+    <Content Remove="wwwroot\Resources\data\Chapter 4 Slides-converted.pdf" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
@@ -22,6 +29,13 @@
 
   <ItemGroup>
     <Folder Include="Resources\data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Resources\data\501 challenging logic reasoning 2e.pdf" />
+    <None Include="wwwroot\Resources\data\9 months_Track Overview-SWTesting.pdf" />
+    <None Include="wwwroot\Resources\data\Chapter 2 Slides.pdf" />
+    <None Include="wwwroot\Resources\data\Chapter 4 Slides-converted.pdf" />
   </ItemGroup>
 
 </Project>

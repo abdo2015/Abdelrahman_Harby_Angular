@@ -7,7 +7,8 @@ import {Observable} from 'rxjs';
 })
 export class DocumentService {
   
-baseUrl = "https://localhost:5001/";
+//baseUrl = "https://localhost:5001/";
+baseUrl = "https://localhost:44314/";    //using IIS
 
 
 UploadFileUrl = this.baseUrl + "api/Document";
