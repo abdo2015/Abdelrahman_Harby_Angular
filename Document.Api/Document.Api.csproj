@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Resources\data\501 challenging logic reasoning 2e.pdf" />
     <None Include="wwwroot\Resources\data\9 months_Track Overview-SWTesting.pdf" />
     <None Include="wwwroot\Resources\data\Chapter 2 Slides.pdf" />
