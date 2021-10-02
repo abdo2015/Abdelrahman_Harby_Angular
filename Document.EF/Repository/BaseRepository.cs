@@ -89,10 +89,6 @@ namespace Document.EF.Repository
         {
             _context.Set<T>().RemoveRange(entities);
         }
-        public bool Check(string x)
-        {
-            var check =_context.Set<T>().Find(x);
-            return check != null?true:false ;
-        }
+        
     }
 }

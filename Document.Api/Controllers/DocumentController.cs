@@ -66,7 +66,7 @@ namespace Document.Api.Controllers
             try {
                 var file = Request.Form.Files[0];
                 var folderName = Path.Combine("Resources", "data");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folderName);
                 if (file.Length > 0)
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
@@ -83,11 +83,12 @@ namespace Document.Api.Controllers
                         Description = Request.Form["description"]
                     };
                     var uploadedDocument = _UnitOfWork.DocumentRepository.Add(doc);
-                    //if (!_UnitOfWork.DocumentRepository.Check(doc.DocumentTitle))
-                    //{
-                    //    ModelState.AddModelError("Title", "the title is already taken");
-                    //    return BadRequest(ModelState);
-                    //}
+                    var checker = _UnitOfWork.DocumentRepository.GetAll().Where(x => x.DocumentTitle == doc.DocumentTitle).SingleOrDefault();
+                    if (checker != null)
+                    {
+                        ModelState.AddModelError("Title", "the title is already taken");
+                        return BadRequest(ModelState);
+                    }
                     _UnitOfWork.Complete();
                     return Ok(uploadedDocument);
                 }
@@ -127,7 +128,7 @@ namespace Document.Api.Controllers
     [HttpGet("{String}")]
     public IActionResult CheckTitle(string Title)
     {
-        if (_UnitOfWork.DocumentRepository.Check(Title))
+        if (_UnitOfWork.DocumentRepository.GetAll().Where(x=>x.DocumentTitle == Title)!=null)
             return Ok();
         else
             return NotFound();

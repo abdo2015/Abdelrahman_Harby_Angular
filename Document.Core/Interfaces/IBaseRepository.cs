@@ -19,6 +19,6 @@ namespace Document.Core.Interfaces
         T Update(T entity);
         void Delete(int id);
         void DeleteRange(IEnumerable<T> entities);
-        bool Check(string x);
+       
     }
 }
